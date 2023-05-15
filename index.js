@@ -17,6 +17,15 @@ app.get("/",(req,res)=>{
     res.send("Hello world")
 })
 
+app.get("/imagen",(req,res)=>{
+    res.sendFile("./static/img/bote de pintura.png",{
+        root:__dirname
+    })
+})
+
+app.get("/user",(req,res)=>{
+    res.json({"name":"victor"})})
+
 app.get("/about",(req,res)=>{
     res.send("About")
 })
