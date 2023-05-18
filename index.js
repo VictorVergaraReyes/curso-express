@@ -23,31 +23,29 @@ app.get("/imagen",(req,res)=>{
     })
 })
 
-app.get("/user",(req,res)=>{
-    res.json({"name":"victor"})})
+// app.get("/user",(req,res)=>{
+//     res.json({"name":"victor"})})
 
-app.get("/about",(req,res)=>{
-    res.send("About")
+app.use(express.text())
+app.use(express.json())
+app.use(express.urlencoded({extended:false}))
+
+app.post('/user',(req,res)=>{
+    console.log(req.body)
+    res.send("Nuevo usuario creado")
 })
 
-app.get("/weather",(req,res)=>{
-    res.send("The current weather is Nice")
+app.get('/hello/:username',(req,res)=>{
+    console.log(req.params.username)
+    res.send(`HELLO ${req.params.username.toUpperCase()}`)
 })
 
-app.post("/products",(req,res)=>{
-    res.send("Lista de productos")
-})
 
-app.put("/products",(req,res)=>{
-    res.send("Lista de productos")
-})
-
-app.delete("/products",(req,res)=>{
-    res.send("Eliminando un producto")
-})
-
-app.patch("/products",(req,res)=>{
-    res.send("Actualizando una parte del producto")
+app.get("/add/:x/:y",(req,res)=>{
+    console.log(req.params.x)
+    console.log(req.params.y)
+    result=parseInt(req.params.x)+parseInt(req.params.y)
+    res.send(`Result ${result}`)
 })
 
 app.listen(3000)
